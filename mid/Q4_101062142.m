@@ -6,12 +6,12 @@ function output = Q4_101062142(p)
 		for i=1:n
 			g = p(i,:)-x;
 			g = g.^2;
-			sumDistance = sumDistance + sum(g)^(0.5);
+			sumDistance = sumDistance + sqrt(sum(g));
 		end
 	end
 	pp=fminsearch(@dist2Plane, mean(p));
 	
-	for i=1:3000
+	for i=1:3
 		pp=fminsearch(@dist2Plane, pp);
 	end
 	output = pp';
