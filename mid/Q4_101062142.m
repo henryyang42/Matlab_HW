@@ -1,18 +1,17 @@
 function output = Q4_101062142(p)
-	p = p';
-	[n,m] = size(p);
-	function sumDistance=dist2Plane(x)
-		sumDistance=0;
-		for i=1:n
-			g = p(i,:)-x;
-			g = g.^2;
-			sumDistance = sumDistance + sqrt(sum(g));
-		end
-	end
-	pp=fminsearch(@dist2Plane, mean(p));
-	
-	for i=1:3
-		pp=fminsearch(@dist2Plane, pp);
-	end
-	output = pp';
+	function tot=f(v)
+        tot=0;
+        for i=1:n
+            u = p(:,i);
+            dis=0;
+            for j=1:di
+                dis= dis+(u(j)-v(j))^2;
+            end
+            tot = tot+sqrt(dis);
+        end
+    end
+    [di, n] = size(p);
+    k=mean(p,2);
+    [v, totr] = fminsearch(@f, k);
+    output=v;
 end
