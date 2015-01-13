@@ -1,4 +1,4 @@
-function output = mle4gaussian(X);
+function output = mle4gaussian(X)
 	[row, col] = size(X);
 	mu = mean(X');
 	mu = mu';
