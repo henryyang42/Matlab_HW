@@ -1,10 +1,10 @@
-function output = Q1_101062142(A)
-	[n, m] = size(A);
-	x = zeros(1, n)' + 1/n;
-	xx = zeros(1, n)';
-	while norm(x-xx,1) > eps
-		xx = x;
-		x = A*x;
+function output = Q1_101062142(frame, polyOrder)
+	x=(1:length(frame))';
+	A = [];
+	for i=0:polyOrder
+		A = [A, x.^i];
 	end
-	output = x;
+	theta = A\frame';
+
+	output = frame' - A*theta;
 end

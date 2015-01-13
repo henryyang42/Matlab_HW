@@ -1,11 +1,12 @@
-function output = Q2_101062142(X)
-	[row, col] = size(X);
-	mu = mean(X');
-	mu = mu';
-	sum = 0;
-	for i=1 : col
-		sum = sum + (X(:, i)-mu)*((X(:, i)-mu)');
+function [pr, iterCount] = Q2_101062142(A)
+	[n, m] = size(A);
+	x = zeros(1, n)' + 1/n;
+	xx = zeros(1, n)';
+	iterCount = 0;
+	while norm(x-xx,1) > eps
+		xx = x;
+		x = A*x;
+		iterCount = iterCount + 1;
 	end
-	sum = sum / col;
-	output = sum;
+	pr = x;
 end
